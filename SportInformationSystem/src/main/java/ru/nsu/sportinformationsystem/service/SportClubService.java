@@ -38,7 +38,7 @@ public class SportClubService {
         if (athleteClubId != null) {
             SportClub clubOfAthlete = sportClubs.stream()
                     .filter(sportClub -> Objects.equals(sportClub.getId(), athleteClubId))
-                    .findFirst().get();
+                    .findFirst().orElse(null);
             sportClubs.remove(clubOfAthlete);
             sportClubs.add(0, clubOfAthlete);
         }

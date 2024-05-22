@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:method="GET" th:action="@{/competitions/by_date}">
+    <label for="from">Find by date and organizer: </label>
+    <input type="date" name="from" id="from"/>
+    <input type="date" name="to" id="to"/>
+    <select name="organizer_id" id="organizer">
+        <option th:value="null" th:text="none"></option>
+        <option th:each="organizer : ${organizers}" th:value="${organizer.getId()}" th:text="${organizer.getFirstName() + ' ' + organizer.getLastName() + (organizer.getFatherName() != null ? ' ' + organizer.getFatherName() : '')}"></option>
+    </select>
+    <input type="submit" value="Find"/>
+</form>
+<hr/>
+
+<form th:method="GET" th:action="@{/competitions/by_place}">
+    <label for="place">Find athletes by place and sport: </label>
+    <select name="place_id" id="place">
+        <option th:each="place : ${places}" th:value="${place.getId()}" th:text="${place.getName() + ', ' + place.getAddress()}"></option>
+    </select>
+    <select name="sport_id" id="sport">
+        <option th:value="null" th:text="none"></option>
+        <option th:each="sport : ${sports}" th:value="${sport.getId()}" th:text="${sport.getName()}"></option>
+    </select>
+    <input type="submit" value="Find"/>
+</form>
+<hr/>
+
+<form th:method="GET" th:action="@{/competitions/winners}">
+    <label for="competition">Find winners by competition: </label>
+    <select name="competition_id" id="competition">
+        <option th:each="competition : ${competitions}" th:value="${competition.getId()}" th:text="${competition.getName() + ', ' + competition.getCompetitionDate()}"></option>
+    </select>
+    <input type="submit" value="Find"/>
+</form>
+<hr/>
+
+<h3>Competition list:</h3>
+<div th:each="competition:${competitions}">
+    <a th:text="${competition.getName() + ', ' + competition.getCompetitionDate()}">competitions</a>
+</div>
+</body>
+</html>

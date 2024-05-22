@@ -20,7 +20,7 @@ public class SportService {
         return (List<Sport>) sportRepository.findAll();
     }
 
-    public Sport getSportById(int id) {
-        return sportRepository.findById(id).get();
+    public Sport getById(int id) {
+        return sportRepository.findById(id).orElse(null);
     }
 }

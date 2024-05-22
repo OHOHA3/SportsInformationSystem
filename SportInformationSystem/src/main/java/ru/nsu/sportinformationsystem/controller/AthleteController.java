@@ -84,19 +84,19 @@ public class AthleteController {
     @GetMapping("/by_sports_count")
     public String listBySportsCount(Model model, @RequestParam("count") int count) {
         model.addAttribute("count", count);
-        model.addAttribute("athletes", athleteSportService.findAllBySportsCount(count));
+        model.addAttribute("athletes", athleteSportService.findBySportsCount(count));
         return "athlete/athletesBySportsCount";
     }
 
     @GetMapping("/by_sport")
     public String listBySport(Model model, @RequestParam("sport_id") int sportId, @RequestParam(value = "rank_id", required = false) Integer rankId) {
-        model.addAttribute("sport", sportService.getSportById(sportId).getName());
+        model.addAttribute("sport", sportService.getById(sportId).getName());
         if (rankId == null) {
-            model.addAttribute("athletes", athleteSportService.findAllBySportId(sportId));
+            model.addAttribute("athletes", athleteService.findBySportId(sportId));
             model.addAttribute("rank", null);
         } else {
-            model.addAttribute("athletes", athleteSportService.findAllBySportIdAndRankId(sportId, rankId));
-            model.addAttribute("rank", sportsRankService.getRankName(rankId));
+            model.addAttribute("athletes", athleteService.findBySportIdAndRankId(sportId, rankId));
+            model.addAttribute("rank", sportsRankService.getById(rankId).getName());
         }
         return "athlete/athletesBySport";
     }
@@ -105,11 +105,11 @@ public class AthleteController {
     public String listByTrainer(Model model, @RequestParam("trainer_id") int trainerId, @RequestParam(value = "rank_id", required = false) Integer rankId) {
         model.addAttribute("trainer", trainerService.getById(trainerId));
         if (rankId == null) {
-            model.addAttribute("athletes", athleteSportService.findAllByTrainerId(trainerId));
+            model.addAttribute("athletes", athleteSportService.findByTrainerId(trainerId));
             model.addAttribute("rank", null);
         } else {
-            model.addAttribute("athletes", athleteSportService.findAllByTrainerIdAndRankId(trainerId, rankId));
-            model.addAttribute("rank", sportsRankService.getRankName(rankId));
+            model.addAttribute("athletes", athleteSportService.findByTrainerIdAndRankId(trainerId, rankId));
+            model.addAttribute("rank", sportsRankService.getById(rankId).getName());
         }
         return "athlete/athletesByTrainer";
     }
@@ -120,7 +120,7 @@ public class AthleteController {
         model.addAttribute("to", to);
         LocalDate dateFrom = from.isEmpty() ? LocalDate.now().minusYears(100) : LocalDate.parse(from);
         LocalDate dateTo = to.isEmpty()? LocalDate.now() : LocalDate.parse(to);
-        model.addAttribute("athletes", athleteService.findAllByCompetitionDate(dateFrom, dateTo));
+        model.addAttribute("athletes", athleteService.findByCompetitionDate(dateFrom, dateTo));
         return "athlete/athletesDidNotParticipate";
     }
 }

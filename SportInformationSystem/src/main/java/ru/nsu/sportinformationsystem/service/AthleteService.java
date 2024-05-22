@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.nsu.sportinformationsystem.model.Athlete;
+import ru.nsu.sportinformationsystem.outputModel.AthleteRankOutput;
 import ru.nsu.sportinformationsystem.repository.AthleteRepository;
 
 import java.time.LocalDate;
@@ -42,7 +43,15 @@ public class AthleteService {
         athleteRepository.deleteById(id);
     }
 
-    public List<Athlete> findAllByCompetitionDate(LocalDate from, LocalDate to) {
+    public List<AthleteRankOutput> findBySportId(int sportId) {
+        return athleteRepository.findAllBySportId(sportId);
+    }
+
+    public List<AthleteRankOutput> findBySportIdAndRankId(int sportId, int rankId) {
+        return athleteRepository.findAllBySportIdAndRankId(sportId, rankId);
+    }
+
+    public List<Athlete> findByCompetitionDate(LocalDate from, LocalDate to) {
         return athleteRepository.findAllByCompetitionDate(from, to);
     }
 }

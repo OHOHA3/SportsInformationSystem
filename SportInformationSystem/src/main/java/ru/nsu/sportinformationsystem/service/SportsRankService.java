@@ -20,7 +20,7 @@ public class SportsRankService {
         return (List<SportsRank>) sportsRankRepository.findAll();
     }
 
-    public String getRankName(int id) {
-        return sportsRankRepository.findById(id).map(SportsRank::getName).orElse(null);
+    public SportsRank getById(int id) {
+        return sportsRankRepository.findById(id).orElse(null);
     }
 }

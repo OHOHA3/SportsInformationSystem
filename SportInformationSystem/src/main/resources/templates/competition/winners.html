@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3 th:text="${'Winners of ' + competition.getName() + ', ' + competition.getCompetitionDate()}"></h3>
+<div th:each="winner: ${winners}">
+    <div>
+        <span th:text="${winner.getFirstName() + ' ' + winner.getLastName() + (winner.getFatherName() != null ? ' ' + winner.getFatherName() : '') + ', place: ' + winner.getPlace()}"></span>
+    </div>
+</div>
+</body>
+</html>
