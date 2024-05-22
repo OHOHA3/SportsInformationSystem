@@ -12,5 +12,5 @@ public class Athlete {
     private String firstName;
     private String lastName;
     private String fatherName;
-    private int clubId;
+    private Integer clubId;
 }

@@ -3,14 +3,13 @@ package ru.nsu.sportinformationsystem.model;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
-import org.springframework.stereotype.Component;
 
 @Getter
 @Setter
-@Component
-public class Sport {
+public class SportPlace {
     @Id
     private int id;
     private String name;
-    private String description;
+    private int typeId;
+    private String address;
 }

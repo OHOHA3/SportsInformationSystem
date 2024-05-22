@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/athletes/new">Add athlete</a>
+<hr/>
+<form th:method="GET" th:action="@{/athletes/by_sports_count}">
+    <label for="sportsCount">Find athletes by sports count: </label>
+    <select name="count" id="sportsCount">
+        <option th:each="i : ${#numbers.sequence(1, 4)}" th:value="${i}" th:text="${i}"></option>
+    </select>
+    <input type="submit" value="Find"/>
+</form>
+<hr/>
+
+<form th:method="GET" th:action="@{/athletes/by_sport}">
+    <label for="sport">Find athletes by sport and rank: </label>
+    <select name="sport_id" id="sport">
+        <option th:each="sport : ${sports}" th:value="${sport.getId()}" th:text="${sport.getName()}"></option>
+    </select>
+    <select name="rank_id" id="sportsRank1">
+        <option th:value="null" th:text="none"></option>
+        <option th:each="rank : ${ranks}" th:value="${rank.getId()}" th:text="${rank.getName()}"></option>
+    </select>
+    <input type="submit" value="Find"/>
+</form>
+<hr/>
+
+<form th:method="GET" th:action="@{/athletes/by_trainer}">
+    <label for="trainer">Find athletes by trainer and rank: </label>
+    <select name="trainer_id" id="trainer">
+        <option th:each="trainer : ${trainers}" th:value="${trainer.getId()}" th:text="${trainer.getFirstName() + ' ' + trainer.getLastName() + (trainer.getFatherName() != null ? ' ' + trainer.getFatherName() : '')}"></option>
+    </select>
+    <select name="rank_id" id="sportsRank2">
+        <option th:value="null" th:text="none"></option>
+        <option th:each="rank : ${ranks}" th:value="${rank.getId()}" th:text="${rank.getName()}"></option>
+    </select>
+    <input type="submit" value="Find"/>
+</form>
+<hr/>
+
+<form th:method="GET" th:action="@{/athletes/by_competition_date}">
+    <label for="from">Did not participate int interval: </label>
+    <input type="date" name="from" id="from"/>
+    <input type="date" name="to" id="to"/>
+    <input type="submit" value="Find"/>
+</form>
+<hr/>
+
+<h3>Athlete list:</h3>
+<div th:each="athlete: ${athletes}">
+    <a th:href="@{/athletes/{id}(id=${athlete.getId()})}"
+       th:text="${athlete.getFirstName() + ' ' + athlete.getLastName() + (athlete.getFatherName() != null ? ' ' + athlete.getFatherName() : '')}">athlete</a>
+</div>
+</body>
+</html>

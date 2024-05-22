@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Setter
 public class SportClub {
     @Id
-    private int id;
+    private Integer id;
     private String name;
     private LocalDate creationDate;
 }

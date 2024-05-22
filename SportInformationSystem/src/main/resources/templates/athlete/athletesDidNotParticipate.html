@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3 th:text="${'Athletes who did not participate' + (from.isEmpty() ? '' : ' from ' + from) + (to.isEmpty() ? '' : ' to ' + to)}"></h3>
+<div th:each="athlete: ${athletes}">
+    <span th:text="${athlete.getFirstName() + ' ' + athlete.getLastName() + (athlete.getFatherName() != null ? ' ' + athlete.getFatherName() : '')}"></span>
+</div>
+</body>
+</html>

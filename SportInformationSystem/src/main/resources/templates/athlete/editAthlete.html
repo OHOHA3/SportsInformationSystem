@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:method="PATCH" th:action="@{/athletes/{id}(id=${athlete.getId()})}" th:object="${athlete}">
+    <label for="firstname">Firstname: </label>
+    <input type="text" th:field="*{firstName}" id="firstname">
+    <br/>
+
+    <label for="lastname">Lastname: </label>
+    <input type="text" th:field="*{lastName}" id="lastname">
+    <br/>
+
+    <label for="fathername">Fathername: </label>
+    <input type="text" th:field="*{fatherName}" id="fathername">
+    <br/>
+
+    <label for="club">Sport club: </label>
+    <select th:field="*{clubId}" id="club">
+        <option th:each="sportClub : ${sportClubs}" th:value="${sportClub.getId()}"
+                th:text="${sportClub.getName()}"></option>
+    </select>
+
+    <input type="submit" value="Update"/>
+</form>
+</body>
+</html>

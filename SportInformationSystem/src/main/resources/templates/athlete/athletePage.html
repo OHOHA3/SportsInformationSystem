@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p th:text="${'Firstname: ' + athlete.getFirstName()}">VALUE</p>
+<p th:text="${'Lastname: ' + athlete.getLastName()}">VALUE</p>
+<a>Fathername: </a>
+<span th:text="${athlete.getFatherName() != null} ? ${athlete.getFatherName()} : 'none'">someValue</span>
+<br/>
+<br/>
+<a>Sport club: </a>
+<span th:text="${sportClub != null} ? ${sportClub.getName()} : 'none'">someValue</span>
+<br/>
+<br/>
+<a th:href="@{/athletes/{id}/edit(id=${athlete.getId()})}">Edit</a>
+
+<form th:method="DELETE" th:action="@{/athletes/{id}(id=${athlete.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
+</body>
+</html>

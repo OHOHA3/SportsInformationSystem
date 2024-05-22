@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3 th:text="'Athletes training in at least ' + ${count} + ' sports:'"></h3>
+<div th:each="athlete: ${athletes}">
+    <div>
+        <span th:text="${athlete.getFirstName() + ' ' + athlete.getLastName() + (athlete.getFatherName() != null ? ' ' + athlete.getFatherName() : '') + ':'}"></span>
+        <span th:each="sport, iterStat : ${athlete.getSportList()}"
+              th:text="${sport + (iterStat.last ? '' : ', ')}"></span>
+    </div>
+</div>
+</body>
+</html>
