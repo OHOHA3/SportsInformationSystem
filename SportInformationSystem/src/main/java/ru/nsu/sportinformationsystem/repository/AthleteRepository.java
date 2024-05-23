@@ -35,10 +35,9 @@ public interface AthleteRepository extends CrudRepository<Athlete, Integer> {
             a.last_name AS last_name,
             sr.name AS sports_rank
             FROM Athlete AS a JOIN Athlete_sport AS a_s
-            ON a.id = a_s.athlete_id JOIN Sport AS s
-            ON a_s.sport_id = s.id LEFT JOIN Sports_rank AS sr
+            ON a.id = a_s.athlete_id LEFT JOIN Sports_rank AS sr
             ON a_s.sports_rank_id = sr.id
-            WHERE s.id = :sportId
+            WHERE a_s.sport_id = :sportId
             """)
     List<AthleteRankOutput> findAllBySportId(@Param("sportId") int sportId);
 
@@ -47,10 +46,9 @@ public interface AthleteRepository extends CrudRepository<Athlete, Integer> {
             a.last_name AS last_name,
             sr.name AS sports_rank
             FROM Athlete AS a JOIN Athlete_sport AS a_s
-            ON a.id = a_s.athlete_id JOIN Sport AS s
-            ON a_s.sport_id = s.id JOIN Sports_rank AS sr
+            ON a.id = a_s.athlete_id JOIN Sports_rank AS sr
             ON a_s.sports_rank_id = sr.id
-            WHERE s.id = :sportId AND sr.id >= :rankId
+            WHERE a_s.sport_id = :sportId AND sr.id >= :rankId
             """)
     List<AthleteRankOutput> findAllBySportIdAndRankId(@Param("sportId") int sportId, @Param("rankId") int rankId);
 
@@ -60,9 +58,8 @@ public interface AthleteRepository extends CrudRepository<Athlete, Integer> {
                     a.last_name AS last_name,
                     a.father_name AS father_name
                     FROM Athlete AS a JOIN Trainer_athlete AS ta
-                    ON a.id = ta.athlete_id JOIN Trainer AS t
-                    ON ta.trainer_id = t.id
-                    WHERE t.id = :trainerId
+                    ON a.id = ta.athlete_id
+                    WHERE ta.trainer_id = :trainerId
                     GROUP BY a.id
             """)
     List<Athlete> findAllByTrainerId(@Param("trainerId") int trainerId);
@@ -73,11 +70,10 @@ public interface AthleteRepository extends CrudRepository<Athlete, Integer> {
                     a.last_name AS last_name,
                     a.father_name AS father_name
                     FROM Athlete AS a JOIN Trainer_athlete AS ta
-                    ON a.id = ta.athlete_id JOIN Trainer AS t
-                    ON ta.trainer_id = t.id JOIN Athlete_sport AS a_s
+                    ON a.id = ta.athlete_id JOIN Athlete_sport AS a_s
                     ON ta.athlete_id = a_s.athlete_id AND ta.sport_id = a_s.sport_id
                     JOIN Sports_rank AS sr ON a_s.sports_rank_id = sr.id
-                    WHERE t.id = :trainerId AND sr.id >= :rankId
+                    WHERE ta.trainer_id = :trainerId AND sr.id >= :rankId
                     GROUP BY a.id
             """)
     List<Athlete> findAllByTrainerIdAndRankId(@Param("trainerId") int trainerId, @Param("rankId") int rankId);

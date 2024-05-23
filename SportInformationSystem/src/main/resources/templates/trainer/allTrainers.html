@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:method="GET" th:action="@{/trainers/by_athlete}">
+    <label for="athlete">Find trainers by athlete: </label>
+    <select name="athlete_id" id="athlete">
+        <option th:each="athlete : ${athletes}" th:value="${athlete.getId()}"
+                th:text="${athlete.getFirstName() + ' ' + athlete.getLastName() + (athlete.getFatherName() != null ? ' ' + athlete.getFatherName() : '')}"></option>
+    </select>
+    <input type="submit" value="Find"/>
+</form>
+<hr/>
+
+<form th:method="GET" th:action="@{/trainers/by_sport}">
+    <label for="sport">Find trainers by sport: </label>
+    <select name="sport_id" id="sport">
+        <option th:each="sport : ${sports}" th:value="${sport.getId()}" th:text="${sport.getName()}"></option>
+    </select>
+    <input type="submit" value="Find"/>
+</form>
+<hr/>
+
+<h3>Trainer list:</h3>
+<div th:each="trainer: ${trainers}">
+    <a th:text="${trainer.getFirstName() + ' ' + trainer.getLastName() + (trainer.getFatherName() != null ? ' ' + trainer.getFatherName() : '')}">trainer</a>
+</div>
+</body>
+</html>

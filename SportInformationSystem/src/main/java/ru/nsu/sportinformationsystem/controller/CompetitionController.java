@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.nsu.sportinformationsystem.service.*;
 
-import java.time.LocalDate;
-
 @Controller
 @RequestMapping("/competitions")
 public class CompetitionController {
@@ -41,13 +39,11 @@ public class CompetitionController {
     public String listByDates(Model model, @RequestParam("from") String from, @RequestParam("to") String to, @RequestParam(value = "organizer_id", required = false) Integer organizerId) {
         model.addAttribute("from", from);
         model.addAttribute("to", to);
-        LocalDate dateFrom = from.isEmpty() ? LocalDate.now().minusYears(100) : LocalDate.parse(from);
-        LocalDate dateTo = to.isEmpty() ? LocalDate.now() : LocalDate.parse(to);
         if (organizerId == null) {
-            model.addAttribute("competitions", competitionService.findByCompetitionDate(dateFrom, dateTo));
+            model.addAttribute("competitions", competitionService.findByCompetitionDate(from, to));
             model.addAttribute("organizer", null);
         } else {
-            model.addAttribute("competitions", competitionService.findByCompetitionDateAndTrainerId(dateFrom, dateTo, organizerId));
+            model.addAttribute("competitions", competitionService.findByCompetitionDateAndTrainerId(from, to, organizerId));
             model.addAttribute("organizer", organizerService.getById(organizerId));
         }
         return "competition/competitionsByDate";
@@ -67,7 +63,7 @@ public class CompetitionController {
     }
 
     @GetMapping("/winners")
-    public String listWinners(Model model,@RequestParam("competition_id") int competitionId) {
+    public String listWinners(Model model, @RequestParam("competition_id") int competitionId) {
         model.addAttribute("competition", competitionService.getById(competitionId));
         model.addAttribute("winners", competitionAthleteService.findWinnersByCompetitionId(competitionId));
         return "competition/winners";

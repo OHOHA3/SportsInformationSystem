@@ -46,4 +46,15 @@ public interface SportRepository extends CrudRepository<Sport, Integer> {
             WHERE t.id = :trainerId AND a.id=:athleteId AND sr.id >= :rankId
             """)
     List<SportRankOutput> findAllByAthleteIdAndTrainerIdAndRankId(@Param("athleteId") int athleteId, @Param("trainerId") int trainerId, @Param("rankId") int rankId);
+    @Query("""
+            SELECT s.id AS id,
+            s.description AS description,
+            s.name AS name
+            FROM Trainer AS t JOIN Trainer_athlete AS ta
+            ON t.id = ta.trainer_id JOIN Athlete AS a
+            ON a.id = ta.athlete_id JOIN Sport AS s
+            ON s.id = ta.sport_id
+            WHERE a.id = :athleteId AND t.id = :trainerId
+            """)
+    List<Sport> findAllByTrainerIdAndAthleteId(@Param("trainerId") int trainerId, @Param("athleteId") int athleteId);
 }

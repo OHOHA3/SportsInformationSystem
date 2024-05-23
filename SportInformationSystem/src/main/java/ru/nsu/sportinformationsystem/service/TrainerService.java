@@ -3,6 +3,7 @@ package ru.nsu.sportinformationsystem.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.nsu.sportinformationsystem.model.Trainer;
+import ru.nsu.sportinformationsystem.outputModel.TrainerQualificationOutput;
 import ru.nsu.sportinformationsystem.repository.TrainerRepository;
 
 import java.util.List;
@@ -22,5 +23,9 @@ public class TrainerService {
 
     public Trainer getById(int id) {
         return trainerRepository.findById(id).orElse(null);
+    }
+
+    public List<TrainerQualificationOutput> findBySportId(int sportId) {
+        return trainerRepository.findAllBySportId(sportId);
     }
 }

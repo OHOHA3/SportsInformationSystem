@@ -51,7 +51,9 @@ public class AthleteService {
         return athleteRepository.findAllBySportIdAndRankId(sportId, rankId);
     }
 
-    public List<Athlete> findByCompetitionDate(LocalDate from, LocalDate to) {
-        return athleteRepository.findAllByCompetitionDate(from, to);
+    public List<Athlete> findByCompetitionDate(String from, String to) {
+        LocalDate dateFrom = from.isEmpty() ? LocalDate.now().minusYears(100) : LocalDate.parse(from);
+        LocalDate dateTo = to.isEmpty() ? LocalDate.now() : LocalDate.parse(to);
+        return athleteRepository.findAllByCompetitionDate(dateFrom, dateTo);
     }
 }

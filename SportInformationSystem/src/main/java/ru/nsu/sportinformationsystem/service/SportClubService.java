@@ -47,7 +47,9 @@ public class SportClubService {
         return sportClubs;
     }
 
-    public List<SportClubCountOutput> findByDate(LocalDate from, LocalDate to) {
-        return sportClubRepository.findAllByDate(from, to);
+    public List<SportClubCountOutput> findByDate(String from, String to) {
+        LocalDate dateFrom = from.isEmpty() ? LocalDate.now().minusYears(100) : LocalDate.parse(from);
+        LocalDate dateTo = to.isEmpty() ? LocalDate.now() : LocalDate.parse(to);
+        return sportClubRepository.findAllByDate(dateFrom, dateTo);
     }
 }

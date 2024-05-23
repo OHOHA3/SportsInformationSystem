@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3 th:text="${'Trainers of athlete ' + athlete.getFirstName() + ' ' + athlete.getLastName() + (athlete.getFatherName() != null ? ' ' + athlete.getFatherName() : '')}"></h3>
+<div th:each="trainer: ${trainers}">
+    <div>
+        <span th:text="${trainer.getFirstName() + ' ' + trainer.getLastName() + (trainer.getFatherName() != null ? ' ' + trainer.getFatherName() : '') + ':'}"></span>
+        <span th:each="sport, iterStat : ${trainer.getSportList()}"
+              th:text="${sport + (iterStat.last ? '' : ', ')}"></span>
+    </div>
+</div>
+</body>
+</html>

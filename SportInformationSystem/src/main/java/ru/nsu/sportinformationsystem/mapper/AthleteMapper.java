@@ -10,7 +10,7 @@ import ru.nsu.sportinformationsystem.outputModel.SportRankOutput;
 import java.util.List;
 
 @Component
-public class AthleteSportMapper {
+public class AthleteMapper {
     public AthleteSportOutput toAthleteSportOutput(Athlete athlete, List<Sport> sportList) {
         AthleteSportOutput athleteSportOutput = new AthleteSportOutput();
         athleteSportOutput.setFirstName(athlete.getFirstName());

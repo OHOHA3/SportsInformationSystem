@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3 th:text="${'Organizers holding competitions' + (from.isEmpty() ? '' : ' from ' + from) + (to.isEmpty() ? '' : ' to ' + to)}"></h3>
+<div th:each="organizer : ${organizers}">
+    <a th:text="${organizer.getFirstName() + ' ' + organizer.getLastName() + (organizer.getFatherName() != null ? ' ' + organizer.getFatherName() : '') + ', organizations count: ' + organizer.getOrganizationCount()}">competitions</a>
+</div>
+</body>
+</html>

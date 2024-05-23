@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.nsu.sportinformationsystem.model.Athlete;
 import ru.nsu.sportinformationsystem.service.*;
 
-import java.time.LocalDate;
-
 @Controller
 @RequestMapping("/athletes")
 public class AthleteController {
@@ -118,9 +116,7 @@ public class AthleteController {
     public String listByDates(Model model, @RequestParam("from") String from, @RequestParam("to") String to) {
         model.addAttribute("from", from);
         model.addAttribute("to", to);
-        LocalDate dateFrom = from.isEmpty() ? LocalDate.now().minusYears(100) : LocalDate.parse(from);
-        LocalDate dateTo = to.isEmpty()? LocalDate.now() : LocalDate.parse(to);
-        model.addAttribute("athletes", athleteService.findByCompetitionDate(dateFrom, dateTo));
+        model.addAttribute("athletes", athleteService.findByCompetitionDate(from, to));
         return "athlete/athletesDidNotParticipate";
     }
 }
