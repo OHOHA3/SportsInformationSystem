@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:method="GET" th:action="@{/sport_clubs/by_date}">
+    <label for="from">Find by date: </label>
+    <input type="date" name="from" id="from"/>
+    <input type="date" name="to" id="to"/>
+    <input type="submit" value="Find"/>
+</form>
+<hr/>
+
+<h3>Competition list:</h3>
+<div th:each="sportClub:${sportClubs}">
+    <a th:text="${sportClub.getName()}">sportClubs</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3 th:text="${'Sport clubs with athletes participating in competitions' + (from.isEmpty() ? '' : ' from ' + from) + (to.isEmpty() ? '' : ' to ' + to)}"></h3>
+<div th:each="sportClub:${sportClubs}">
+    <a th:text="${sportClub.getName() + ', member count: ' + sportClub.getMemberCount()}">competitions</a>
+</div>
+</body>
+</html>

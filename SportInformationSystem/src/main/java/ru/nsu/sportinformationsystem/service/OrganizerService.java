@@ -19,4 +19,7 @@ public class OrganizerService {
     public List<Organizer> findAll() {
         return (List<Organizer>) organizerRepository.findAll();
     }
+    public Organizer getById(int id) {
+        return organizerRepository.findById(id).orElse(null);
+    }
 }

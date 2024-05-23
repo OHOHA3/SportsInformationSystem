@@ -48,7 +48,7 @@ public class CompetitionController {
             model.addAttribute("organizer", null);
         } else {
             model.addAttribute("competitions", competitionService.findByCompetitionDateAndTrainerId(dateFrom, dateTo, organizerId));
-            model.addAttribute("organizers", organizerService.findAll());
+            model.addAttribute("organizer", organizerService.getById(organizerId));
         }
         return "competition/competitionsByDate";
     }

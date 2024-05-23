@@ -3,8 +3,10 @@ package ru.nsu.sportinformationsystem.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.nsu.sportinformationsystem.model.SportClub;
+import ru.nsu.sportinformationsystem.outputModel.SportClubCountOutput;
 import ru.nsu.sportinformationsystem.repository.SportClubRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -43,5 +45,9 @@ public class SportClubService {
             sportClubs.add(0, clubOfAthlete);
         }
         return sportClubs;
+    }
+
+    public List<SportClubCountOutput> findByDate(LocalDate from, LocalDate to) {
+        return sportClubRepository.findAllByDate(from, to);
     }
 }
