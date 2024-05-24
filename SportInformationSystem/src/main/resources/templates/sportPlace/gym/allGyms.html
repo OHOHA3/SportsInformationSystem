@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:method="GET" th:action="@{/sport_places/gyms/by_simulators_count}">
+    <label for="minCount">Find gyms with simulators count from: </label>
+    <input type="text" id="minCount" name="min_count">
+    <input type="submit" value="Find"/>
+</form>
+<hr/>
+
+<h3>Gym list:</h3>
+<div th:each="gym : ${gyms}">
+    <a th:text="${gym.getName() + ', ' + gym.getAddress() + ', simulators count: ' + gym.getSimulatorsCount()}">sportClubs</a>
+</div>
+</body>
+</html>

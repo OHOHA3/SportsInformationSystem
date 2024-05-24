@@ -10,6 +10,6 @@ public class SportPlace {
     @Id
     private int id;
     private String name;
-    private int typeId;
     private String address;
+    private int typeId;
 }

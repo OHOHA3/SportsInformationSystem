@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:method="GET" th:action="@{/sport_places/arenas/by_area}">
+    <label for="minArea">Find arenas with area from: </label>
+    <input type="text" id="minArea" name="min_area">
+    <input type="submit" value="Find"/>
+</form>
+<hr/>
+
+<h3>Arena list:</h3>
+<div th:each="arena : ${arenas}">
+    <a th:text="${arena.getName() + ', ' + arena.getAddress() + ', area: ' + arena.getArea()}">sportClubs</a>
+</div>
+</body>
+</html>

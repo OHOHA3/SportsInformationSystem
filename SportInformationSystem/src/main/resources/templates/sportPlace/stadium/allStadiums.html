@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:method="GET" th:action="@{/sport_places/stadiums/by_capacity}">
+    <label for="minCapacity">Find stadiums with capacity from: </label>
+    <input type="text" id="minCapacity" name="min_capacity">
+    <input type="submit" value="Find"/>
+</form>
+<hr/>
+
+<h3>Stadium list:</h3>
+<div th:each="stadium : ${stadiums}">
+    <a th:text="${stadium.getName() + ', ' + stadium.getAddress() + ', capacity: ' + stadium.getCapacity()}">sportClubs</a>
+</div>
+</body>
+</html>

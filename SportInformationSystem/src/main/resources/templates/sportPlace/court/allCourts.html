@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:method="GET" th:action="@{/sport_places/courts/by_coating_type}">
+    <label for="coatingType">Find courts by coating type: </label>
+    <select name="coating_type_id" id="coatingType">
+        <option th:each="coatingType : ${coatingTypes}" th:value="${coatingType.getId()}" th:text="${coatingType.getName()}"></option>
+    </select>
+    <input type="submit" value="Find"/>
+</form>
+<hr/>
+
+<h3>Sport courts list:</h3>
+<div th:each="court : ${courts}">
+    <a th:text="${court.getName() + ', ' + court.getAddress() + ', coating type: ' + court.getCoatingType()}">sportClubs</a>
+</div>
+</body>
+</html>

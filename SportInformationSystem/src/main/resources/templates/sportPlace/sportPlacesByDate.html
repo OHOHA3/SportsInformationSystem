@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3 th:text="${'Sport places with competitions' + (from.isEmpty() ? '' : ' from ' + from) + (to.isEmpty() ? '' : ' to ' + to)}"></h3>
+<div th:each="place: ${places}">
+  <div>
+    <span th:text="${place.getName() + ', ' + place.getAddress() + ':'}"></span>
+    <span th:each="competition, iterStat : ${place.getCompetitions()}" th:text="${competition.getName() + ' - ' + competition.getCompetitionDate() + (iterStat.last ? '' : ', ')}"></span>
+  </div>
+</div>
+</body>
+</html>

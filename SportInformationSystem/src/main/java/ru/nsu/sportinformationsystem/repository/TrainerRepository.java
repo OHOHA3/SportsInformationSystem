@@ -13,9 +13,9 @@ import java.util.List;
 public interface TrainerRepository extends CrudRepository<Trainer, Integer> {
     @Query("""
             SELECT t.id AS id,
-                t.first_name AS first_name,
-                t.last_name AS last_name,
-                t.father_name AS father_name
+            t.first_name AS first_name,
+            t.last_name AS last_name,
+            t.father_name AS father_name
             FROM Trainer AS t JOIN Trainer_athlete AS ta
             ON t.id = ta.trainer_id
             WHERE ta.athlete_id = :athleteId

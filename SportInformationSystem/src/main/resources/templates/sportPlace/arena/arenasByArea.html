@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3 th:text="'Arenas with area from ' + ${minArea}"></h3>
+<div th:each="arena: ${arenas}">
+    <div>
+        <span th:text="${arena.getName() + ', ' + arena.getAddress() + ', area: ' + arena.getArea()}"></span>
+    </div>
+</div>
+</body>
+</html>

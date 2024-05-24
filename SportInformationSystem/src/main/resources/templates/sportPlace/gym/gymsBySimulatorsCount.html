@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3 th:text="'Gyms with simulators count from ' + ${minCount}"></h3>
+<div th:each="gym: ${gyms}">
+  <div>
+    <span th:text="${gym.getName() + ', ' + gym.getAddress() + ', simulators count: ' + gym.getSimulatorsCount()}"></span>
+  </div>
+</div>
+</body>
+</html>

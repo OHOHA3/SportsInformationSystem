@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/sport_places/stadiums">Stadiums</a>
+<br/>
+<a href="/sport_places/gyms">Gyms</a>
+<br/>
+<a href="/sport_places/courts">Courts</a>
+<br/>
+<a href="/sport_places/arenas">Arenas</a>
+<hr/>
+
+<form th:method="GET" th:action="@{/sport_places/by_date}">
+    <label for="from">Find by date: </label>
+    <input type="date" name="from" id="from"/>
+    <input type="date" name="to" id="to"/>
+    <input type="submit" value="Find"/>
+</form>
+<hr/>
+
+<h3>Sport places list:</h3>
+<div th:each="place : ${places}">
+    <a th:text="${place.getName() + ', ' + place.getAddress()}">sportClubs</a>
+</div>
+</body>
+</html>
